@@ -19,7 +19,7 @@ public class TaskConsumer implements Runnable {
 
 			// 从任务队列"task-queue"中获取一个任务，并将该任务放入暂存队列"tmp-queue"
 			String taskid = jedis.rpoplpush("task-queue", "tmp-queue");
-
+			System.out.println("++++" + jedis.llen("tmp-queue") + "++++");
 			// 处理任务----纯属业务逻辑，模拟一下：睡觉
 			try {
 				Thread.sleep(1000);

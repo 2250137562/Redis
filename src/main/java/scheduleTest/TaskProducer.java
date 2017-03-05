@@ -12,7 +12,7 @@ import redis.clients.jedis.Jedis;
  * @vesion 1.0
  */
 public class TaskProducer implements Runnable {
-	
+
 	Jedis jedis = new Jedis("120.25.12.92", 6379);
 
 	public void run() {
@@ -25,7 +25,7 @@ public class TaskProducer implements Runnable {
 				// 将任务插入任务队列：task-queue
 				jedis.lpush("task-queue", taskid.toString());
 				System.out.println("插入了一个新的任务： " + taskid);
-				System.out.println();
+				System.out.println("----" + jedis.llen("task-queue") + "----");
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
